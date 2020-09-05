@@ -34,6 +34,18 @@ module.exports = {
     }
     return course
   },
+  deleteCourse: async (root, { _id }) => {
+    let course
+    try {
+      const db = await connectDb()
+      course = await db.collection('courses').deleteOne({ _id: ObjectID(_id)})
+    } catch (error) {
+      console.error(error)
+    }
+    return course ?
+      `El curso con el ${_id} fue eliminado` :
+      `No existe el elemento seleccionado`
+  },
   createStudent: async (root, { input }) => {
     let student
     try {
@@ -58,5 +70,17 @@ module.exports = {
       console.error(error)
     }
     return student
+  },
+  deleteStudent: async (root, { _id }) => {
+    let student
+    try {
+      const db = await connectDb()
+      student = await db.collection('students').deleteOne({ _id: ObjectID(_id)})
+    } catch (error) {
+      console.error(error)
+    }
+    return student ?
+      `El curso con el ${_id} fue eliminado` :
+      `No existe el elemento seleccionado`
   }
 }
