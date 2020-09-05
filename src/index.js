@@ -11,8 +11,6 @@ const resolvers = require('./lib/resolvers')
 const app = express()
 const port = process.env.PORT || 3000
 
-// definiendo el esquema
-
 const typeDefs = readFileSync(
   join(__dirname, 'lib', 'schema.graphql'),
   'utf-8'
